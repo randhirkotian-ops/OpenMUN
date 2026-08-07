@@ -20,6 +20,7 @@ import { Route as AppResearchRouteImport } from './routes/app.research'
 import { Route as AppResolutionRouteImport } from './routes/app.resolution'
 import { Route as AppSourcesRouteImport } from './routes/app.sources'
 import { Route as AppSpeechesRouteImport } from './routes/app.speeches'
+import { Route as AppToolkitRouteImport } from './routes/app.toolkit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -76,6 +77,11 @@ const AppSpeechesRoute = AppSpeechesRouteImport.update({
   path: '/speeches',
   getParentRoute: () => AppRoute,
 } as any)
+const AppToolkitRoute = AppToolkitRouteImport.update({
+  id: '/toolkit',
+  path: '/toolkit',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/app/resolution': typeof AppResolutionRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
@@ -100,6 +107,7 @@ export interface FileRoutesByTo {
   '/app/resolution': typeof AppResolutionRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
   '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
@@ -114,6 +122,7 @@ export interface FileRoutesById {
   '/app/resolution': typeof AppResolutionRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
   '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
@@ -129,6 +138,7 @@ export interface FileRouteTypes {
     | '/app/resolution'
     | '/app/sources'
     | '/app/speeches'
+    | '/app/toolkit'
     | '/app/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -141,6 +151,7 @@ export interface FileRouteTypes {
     | '/app/resolution'
     | '/app/sources'
     | '/app/speeches'
+    | '/app/toolkit'
     | '/app'
   id:
     | '__root__'
@@ -154,6 +165,7 @@ export interface FileRouteTypes {
     | '/app/resolution'
     | '/app/sources'
     | '/app/speeches'
+    | '/app/toolkit'
     | '/app/'
   fileRoutesById: FileRoutesById
 }
@@ -243,6 +255,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSpeechesRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/toolkit': {
+      id: '/app/toolkit'
+      path: '/toolkit'
+      fullPath: '/app/toolkit'
+      preLoaderRoute: typeof AppToolkitRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -253,6 +272,7 @@ interface AppRouteChildren {
   AppResolutionRoute: typeof AppResolutionRoute
   AppSourcesRoute: typeof AppSourcesRoute
   AppSpeechesRoute: typeof AppSpeechesRoute
+  AppToolkitRoute: typeof AppToolkitRoute
   AppIndexRoute: typeof AppIndexRoute
 }
 
@@ -263,6 +283,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppResolutionRoute: AppResolutionRoute,
   AppSourcesRoute: AppSourcesRoute,
   AppSpeechesRoute: AppSpeechesRoute,
+  AppToolkitRoute: AppToolkitRoute,
   AppIndexRoute: AppIndexRoute,
 }
 
@@ -277,13 +298,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
