@@ -10,33 +10,194 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
+import { Route as AppCountryRouteImport } from './routes/app.country'
+import { Route as AppPaperRouteImport } from './routes/app.paper'
+import { Route as AppResearchRouteImport } from './routes/app.research'
+import { Route as AppResolutionRouteImport } from './routes/app.resolution'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
+import { Route as AppSourcesRouteImport } from './routes/app.sources'
+import { Route as AppSpeechesRouteImport } from './routes/app.speeches'
+import { Route as AppToolkitRouteImport } from './routes/app.toolkit'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCountryRoute = AppCountryRouteImport.update({
+  id: '/country',
+  path: '/country',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaperRoute = AppPaperRouteImport.update({
+  id: '/paper',
+  path: '/paper',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResearchRoute = AppResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResolutionRoute = AppResolutionRouteImport.update({
+  id: '/resolution',
+  path: '/resolution',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSourcesRoute = AppSourcesRouteImport.update({
+  id: '/sources',
+  path: '/sources',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSpeechesRoute = AppSpeechesRouteImport.update({
+  id: '/speeches',
+  path: '/speeches',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppToolkitRoute = AppToolkitRouteImport.update({
+  id: '/toolkit',
+  path: '/toolkit',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
+  '/app/sources': typeof AppSourcesRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app/toolkit': typeof AppToolkitRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/app/analytics'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/speeches'
+    | '/app/toolkit'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/app/analytics'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/speeches'
+    | '/app/toolkit'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/app/analytics'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/settings'
+    | '/app/sources'
+    | '/app/speeches'
+    | '/app/toolkit'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  OnboardingRoute: typeof OnboardingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +209,134 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/country': {
+      id: '/app/country'
+      path: '/country'
+      fullPath: '/app/country'
+      preLoaderRoute: typeof AppCountryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/paper': {
+      id: '/app/paper'
+      path: '/paper'
+      fullPath: '/app/paper'
+      preLoaderRoute: typeof AppPaperRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/research': {
+      id: '/app/research'
+      path: '/research'
+      fullPath: '/app/research'
+      preLoaderRoute: typeof AppResearchRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/resolution': {
+      id: '/app/resolution'
+      path: '/resolution'
+      fullPath: '/app/resolution'
+      preLoaderRoute: typeof AppResolutionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/sources': {
+      id: '/app/sources'
+      path: '/sources'
+      fullPath: '/app/sources'
+      preLoaderRoute: typeof AppSourcesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/speeches': {
+      id: '/app/speeches'
+      path: '/speeches'
+      fullPath: '/app/speeches'
+      preLoaderRoute: typeof AppSpeechesRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/toolkit': {
+      id: '/app/toolkit'
+      path: '/toolkit'
+      fullPath: '/app/toolkit'
+      preLoaderRoute: typeof AppToolkitRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppCountryRoute: typeof AppCountryRoute
+  AppPaperRoute: typeof AppPaperRoute
+  AppResearchRoute: typeof AppResearchRoute
+  AppResolutionRoute: typeof AppResolutionRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppSourcesRoute: typeof AppSourcesRoute
+  AppSpeechesRoute: typeof AppSpeechesRoute
+  AppToolkitRoute: typeof AppToolkitRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppCountryRoute: AppCountryRoute,
+  AppPaperRoute: AppPaperRoute,
+  AppResearchRoute: AppResearchRoute,
+  AppResolutionRoute: AppResolutionRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppSourcesRoute: AppSourcesRoute,
+  AppSpeechesRoute: AppSpeechesRoute,
+  AppToolkitRoute: AppToolkitRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRoute,
+  OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
