@@ -10,33 +10,146 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppRouteImport } from './routes/app'
+import { Route as AuthRouteImport } from './routes/auth'
+import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppCountryRouteImport } from './routes/app.country'
+import { Route as AppPaperRouteImport } from './routes/app.paper'
+import { Route as AppResearchRouteImport } from './routes/app.research'
+import { Route as AppResolutionRouteImport } from './routes/app.resolution'
+import { Route as AppSpeechesRouteImport } from './routes/app.speeches'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppRoute = AppRouteImport.update({
+  id: '/app',
+  path: '/app',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthRoute = AuthRouteImport.update({
+  id: '/auth',
+  path: '/auth',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const OnboardingRoute = OnboardingRouteImport.update({
+  id: '/onboarding',
+  path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AppIndexRoute = AppIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppCountryRoute = AppCountryRouteImport.update({
+  id: '/country',
+  path: '/country',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppPaperRoute = AppPaperRouteImport.update({
+  id: '/paper',
+  path: '/paper',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResearchRoute = AppResearchRouteImport.update({
+  id: '/research',
+  path: '/research',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppResolutionRoute = AppResolutionRouteImport.update({
+  id: '/resolution',
+  path: '/resolution',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSpeechesRoute = AppSpeechesRouteImport.update({
+  id: '/speeches',
+  path: '/speeches',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app': typeof AppIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/app': typeof AppRouteWithChildren
+  '/auth': typeof AuthRoute
+  '/onboarding': typeof OnboardingRoute
+  '/app/country': typeof AppCountryRoute
+  '/app/paper': typeof AppPaperRoute
+  '/app/research': typeof AppResearchRoute
+  '/app/resolution': typeof AppResolutionRoute
+  '/app/speeches': typeof AppSpeechesRoute
+  '/app/': typeof AppIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/speeches'
+    | '/app/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/auth'
+    | '/onboarding'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/speeches'
+    | '/app'
+  id:
+    | '__root__'
+    | '/'
+    | '/app'
+    | '/auth'
+    | '/onboarding'
+    | '/app/country'
+    | '/app/paper'
+    | '/app/research'
+    | '/app/resolution'
+    | '/app/speeches'
+    | '/app/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
+  AuthRoute: typeof AuthRoute
+  OnboardingRoute: typeof OnboardingRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,22 +161,98 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/app': {
+      id: '/app'
+      path: '/app'
+      fullPath: '/app'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth': {
+      id: '/auth'
+      path: '/auth'
+      fullPath: '/auth'
+      preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/onboarding': {
+      id: '/onboarding'
+      path: '/onboarding'
+      fullPath: '/onboarding'
+      preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/app/': {
+      id: '/app/'
+      path: '/'
+      fullPath: '/app/'
+      preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/country': {
+      id: '/app/country'
+      path: '/country'
+      fullPath: '/app/country'
+      preLoaderRoute: typeof AppCountryRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/paper': {
+      id: '/app/paper'
+      path: '/paper'
+      fullPath: '/app/paper'
+      preLoaderRoute: typeof AppPaperRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/research': {
+      id: '/app/research'
+      path: '/research'
+      fullPath: '/app/research'
+      preLoaderRoute: typeof AppResearchRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/resolution': {
+      id: '/app/resolution'
+      path: '/resolution'
+      fullPath: '/app/resolution'
+      preLoaderRoute: typeof AppResolutionRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/speeches': {
+      id: '/app/speeches'
+      path: '/speeches'
+      fullPath: '/app/speeches'
+      preLoaderRoute: typeof AppSpeechesRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppCountryRoute: typeof AppCountryRoute
+  AppPaperRoute: typeof AppPaperRoute
+  AppResearchRoute: typeof AppResearchRoute
+  AppResolutionRoute: typeof AppResolutionRoute
+  AppSpeechesRoute: typeof AppSpeechesRoute
+  AppIndexRoute: typeof AppIndexRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppCountryRoute: AppCountryRoute,
+  AppPaperRoute: AppPaperRoute,
+  AppResearchRoute: AppResearchRoute,
+  AppResolutionRoute: AppResolutionRoute,
+  AppSpeechesRoute: AppSpeechesRoute,
+  AppIndexRoute: AppIndexRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
+  AuthRoute: AuthRoute,
+  OnboardingRoute: OnboardingRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
