@@ -63,7 +63,7 @@ function SettingsPage() {
             Clause V1 keeps everything in local storage — nothing leaves this device. Resetting
             clears your notes, documents and progress.
           </p>
-          <Button variant="destructive" className="mt-4 rounded-full" onClick={reset}>
+          <Button variant="destructive" className="mt-4 rounded-full" onClick={() => setWorkspace(null)}>
             Reset workspace
           </Button>
         </Panel>
