@@ -19,6 +19,7 @@ import { Route as AppCountryRouteImport } from './routes/app.country'
 import { Route as AppPaperRouteImport } from './routes/app.paper'
 import { Route as AppResearchRouteImport } from './routes/app.research'
 import { Route as AppResolutionRouteImport } from './routes/app.resolution'
+import { Route as AppSettingsRouteImport } from './routes/app.settings'
 import { Route as AppSourcesRouteImport } from './routes/app.sources'
 import { Route as AppSpeechesRouteImport } from './routes/app.speeches'
 import { Route as AppToolkitRouteImport } from './routes/app.toolkit'
@@ -73,6 +74,11 @@ const AppResolutionRoute = AppResolutionRouteImport.update({
   path: '/resolution',
   getParentRoute: () => AppRoute,
 } as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
 const AppSourcesRoute = AppSourcesRouteImport.update({
   id: '/sources',
   path: '/sources',
@@ -99,6 +105,7 @@ export interface FileRoutesByFullPath {
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
   '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
   '/app/toolkit': typeof AppToolkitRoute
@@ -113,6 +120,7 @@ export interface FileRoutesByTo {
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
   '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
   '/app/toolkit': typeof AppToolkitRoute
@@ -129,6 +137,7 @@ export interface FileRoutesById {
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
   '/app/resolution': typeof AppResolutionRoute
+  '/app/settings': typeof AppSettingsRoute
   '/app/sources': typeof AppSourcesRoute
   '/app/speeches': typeof AppSpeechesRoute
   '/app/toolkit': typeof AppToolkitRoute
@@ -146,6 +155,7 @@ export interface FileRouteTypes {
     | '/app/paper'
     | '/app/research'
     | '/app/resolution'
+    | '/app/settings'
     | '/app/sources'
     | '/app/speeches'
     | '/app/toolkit'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/app/paper'
     | '/app/research'
     | '/app/resolution'
+    | '/app/settings'
     | '/app/sources'
     | '/app/speeches'
     | '/app/toolkit'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/app/paper'
     | '/app/research'
     | '/app/resolution'
+    | '/app/settings'
     | '/app/sources'
     | '/app/speeches'
     | '/app/toolkit'
@@ -260,6 +272,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppResolutionRouteImport
       parentRoute: typeof AppRoute
     }
+    '/app/settings': {
+      id: '/app/settings'
+      path: '/settings'
+      fullPath: '/app/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
     '/app/sources': {
       id: '/app/sources'
       path: '/sources'
@@ -290,6 +309,7 @@ interface AppRouteChildren {
   AppPaperRoute: typeof AppPaperRoute
   AppResearchRoute: typeof AppResearchRoute
   AppResolutionRoute: typeof AppResolutionRoute
+  AppSettingsRoute: typeof AppSettingsRoute
   AppSourcesRoute: typeof AppSourcesRoute
   AppSpeechesRoute: typeof AppSpeechesRoute
   AppToolkitRoute: typeof AppToolkitRoute
@@ -302,6 +322,7 @@ const AppRouteChildren: AppRouteChildren = {
   AppPaperRoute: AppPaperRoute,
   AppResearchRoute: AppResearchRoute,
   AppResolutionRoute: AppResolutionRoute,
+  AppSettingsRoute: AppSettingsRoute,
   AppSourcesRoute: AppSourcesRoute,
   AppSpeechesRoute: AppSpeechesRoute,
   AppToolkitRoute: AppToolkitRoute,
