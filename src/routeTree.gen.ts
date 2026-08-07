@@ -14,6 +14,7 @@ import { Route as AppRouteImport } from './routes/app'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
 import { Route as AppIndexRouteImport } from './routes/app.index'
+import { Route as AppAnalyticsRouteImport } from './routes/app.analytics'
 import { Route as AppCountryRouteImport } from './routes/app.country'
 import { Route as AppPaperRouteImport } from './routes/app.paper'
 import { Route as AppResearchRouteImport } from './routes/app.research'
@@ -45,6 +46,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
 const AppIndexRoute = AppIndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
   getParentRoute: () => AppRoute,
 } as any)
 const AppCountryRoute = AppCountryRouteImport.update({
@@ -88,6 +94,7 @@ export interface FileRoutesByFullPath {
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/country': typeof AppCountryRoute
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
@@ -101,6 +108,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/country': typeof AppCountryRoute
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
@@ -116,6 +124,7 @@ export interface FileRoutesById {
   '/app': typeof AppRouteWithChildren
   '/auth': typeof AuthRoute
   '/onboarding': typeof OnboardingRoute
+  '/app/analytics': typeof AppAnalyticsRoute
   '/app/country': typeof AppCountryRoute
   '/app/paper': typeof AppPaperRoute
   '/app/research': typeof AppResearchRoute
@@ -132,6 +141,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/auth'
     | '/onboarding'
+    | '/app/analytics'
     | '/app/country'
     | '/app/paper'
     | '/app/research'
@@ -145,6 +155,7 @@ export interface FileRouteTypes {
     | '/'
     | '/auth'
     | '/onboarding'
+    | '/app/analytics'
     | '/app/country'
     | '/app/paper'
     | '/app/research'
@@ -159,6 +170,7 @@ export interface FileRouteTypes {
     | '/app'
     | '/auth'
     | '/onboarding'
+    | '/app/analytics'
     | '/app/country'
     | '/app/paper'
     | '/app/research'
@@ -211,6 +223,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/app/'
       preLoaderRoute: typeof AppIndexRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/app/analytics': {
+      id: '/app/analytics'
+      path: '/analytics'
+      fullPath: '/app/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
       parentRoute: typeof AppRoute
     }
     '/app/country': {
@@ -266,6 +285,7 @@ declare module '@tanstack/react-router' {
 }
 
 interface AppRouteChildren {
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
   AppCountryRoute: typeof AppCountryRoute
   AppPaperRoute: typeof AppPaperRoute
   AppResearchRoute: typeof AppResearchRoute
@@ -277,6 +297,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
+  AppAnalyticsRoute: AppAnalyticsRoute,
   AppCountryRoute: AppCountryRoute,
   AppPaperRoute: AppPaperRoute,
   AppResearchRoute: AppResearchRoute,
