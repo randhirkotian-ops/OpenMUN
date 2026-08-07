@@ -18,7 +18,7 @@ export const Route = createFileRoute("/app/settings")({
 });
 
 function SettingsPage() {
-  const { workspace, save, reset } = useWorkspace();
+  const { workspace, save, setWorkspace } = useWorkspace();
   if (!workspace) return null;
 
   const fields = [
