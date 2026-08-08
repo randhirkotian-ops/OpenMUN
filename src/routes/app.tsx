@@ -59,25 +59,16 @@ export const NAV: { to: NavTo; label: string; icon: typeof Globe2; exact?: boole
 ];
 
 function WorkspaceShell() {
-  const { workspace, ready, setWorkspace, savedAt } = useWorkspace();
+  const { workspace, ready, session, savedAt, saving, error } = useWorkspace();
   const navigate = useNavigate();
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
-    if (ready && !workspace) {
-      setWorkspace(
-        createWorkspace({
-          conference: "Clause Demo Conference",
-          committee: "UNSC",
-          country: "India",
-          agenda: "Reforming United Nations peacekeeping mandates",
-          startDate: "",
-          delegate: "Demo delegate",
-        }),
-      );
-    }
-  }, [ready, workspace, setWorkspace]);
+    if (!ready) return;
+    if (!session) void navigate({ to: "/auth" });
+    else if (!workspace) void navigate({ to: "/onboarding" });
+  }, [ready, session, workspace, navigate]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
