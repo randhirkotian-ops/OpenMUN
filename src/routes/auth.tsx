@@ -69,13 +69,19 @@ function AuthPage() {
         },
       });
       setBusy(false);
-      if (error) return toast.error("Could not create your account", { description: error.message });
+      if (error) {
+        toast.error("Could not create your account", { description: error.message });
+        return;
+      }
       setSent(true);
       return;
     }
     const { error } = await supabase.auth.signInWithPassword({ email, password });
     setBusy(false);
-    if (error) return toast.error("Could not sign you in", { description: error.message });
+    if (error) {
+      toast.error("Could not sign you in", { description: error.message });
+      return;
+    }
     void navigate({ to: "/app" });
   }
 
