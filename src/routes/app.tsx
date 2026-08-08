@@ -22,7 +22,7 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import { WorkspaceProvider, createWorkspace, useWorkspace } from "@/lib/workspace";
+import { WorkspaceProvider, useWorkspace } from "@/lib/workspace";
 import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/app")({
@@ -94,7 +94,7 @@ function WorkspaceShell() {
       <aside className="sticky top-0 hidden h-dvh w-64 shrink-0 flex-col border-r border-sidebar-border bg-sidebar md:flex">
         <Link to="/" className="flex items-center gap-2.5 px-5 py-5">
           <Mark className="h-6 w-6" />
-          <span className="display text-xl">Clause</span>
+          <span className="text-lg font-semibold tracking-tight">Open<span className="text-primary">MUN</span></span>
         </Link>
         <div className="px-3 pb-3">
           <button
@@ -132,7 +132,7 @@ function WorkspaceShell() {
             {workspace.committee} · {workspace.conference}
           </p>
           <p className="mt-2 text-[11px] text-muted-foreground">
-            {savedAt ? "All changes saved" : "Autosave on"}
+            {error ? "Sync error — retrying on next edit" : saving ? "Saving…" : savedAt ? "All changes saved" : "Synced to your account"}
           </p>
         </div>
       </aside>
@@ -140,7 +140,7 @@ function WorkspaceShell() {
       <div className="flex min-w-0 flex-1 flex-col">
         <header className="glass sticky top-0 z-40 flex items-center gap-3 border-b border-border px-4 py-3 md:hidden">
           <Mark className="h-6 w-6" />
-          <span className="display text-lg">Clause</span>
+          <span className="text-base font-semibold tracking-tight">Open<span className="text-primary">MUN</span></span>
           <button
             onClick={() => setOpen(true)}
             aria-label="Search workspace"
