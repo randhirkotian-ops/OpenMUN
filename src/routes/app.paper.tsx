@@ -10,9 +10,9 @@ import { exportDocx, exportMarkdown, exportPdf } from "@/lib/export";
 export const Route = createFileRoute("/app/paper")({
   head: () => ({
     meta: [
-      { title: "Position Paper — Clause" },
+      { title: "Position Paper — OpenMUN" },
       { name: "description", content: "Write your position paper with structure, word count and export." },
-      { property: "og:title", content: "Position Paper — Clause" },
+      { property: "og:title", content: "Position Paper — OpenMUN" },
       { property: "og:description", content: "Templates, word count, citations and export. No AI writing." },
     ],
   }),
@@ -32,7 +32,7 @@ function PaperPage() {
     <PageShell
       eyebrow="Position paper"
       title="Your argument, your words."
-      description="Clause never writes for you. It gives you structure, formatting, counts and clean exports."
+      description="OpenMUN never writes for you. It gives you structure, formatting, counts and clean exports."
       actions={
         <>
           <Button variant="outline" className="rounded-full" onClick={() => exportPdf(title, text)}>

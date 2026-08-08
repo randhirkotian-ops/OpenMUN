@@ -26,13 +26,13 @@ import {
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Clause — Everything you need for Model United Nations" },
+      { title: "OpenMUN — Everything you need for Model United Nations" },
       {
         name: "description",
         content:
           "One workspace for MUN research, country intelligence, position papers, resolutions and speeches. Built for delegates, not chairs.",
       },
-      { property: "og:title", content: "Clause — Everything you need for Model United Nations" },
+      { property: "og:title", content: "OpenMUN — Everything you need for Model United Nations" },
       {
         property: "og:description",
         content:
@@ -369,9 +369,9 @@ function Landing() {
           <h2 className="display mt-4 text-4xl">Questions</h2>
           <Accordion type="single" collapsible className="mt-8">
             {[
-              ["Does Clause write my position paper or speech?", "No. Clause never generates your arguments. It organises research, formats documents, checks structure and gives feedback on work you wrote yourself."],
+              ["Does OpenMUN write my position paper or speech?", "No. OpenMUN never generates your arguments. It organises research, formats documents, checks structure and gives feedback on work you wrote yourself."],
               ["Where does country data come from?", "Official and primary sources only — government ministries, permanent missions, UN databases, the World Bank and the World Factbook. Every field carries a citation and a link."],
-              ["Is it for chairs or organisers?", "Not in version one. Clause is built exclusively around one delegate preparing for one conference."],
+              ["Is it for chairs or organisers?", "Not in version one. OpenMUN is built exclusively around one delegate preparing for one conference."],
               ["Can I export my documents?", "Yes — PDF, DOCX and Markdown, with formatting preserved."],
               ["Does my work autosave?", "Every keystroke is saved locally as you type, so nothing is lost between sessions."],
             ].map(([q, a], i) => (

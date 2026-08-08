@@ -10,9 +10,9 @@ import { useWorkspace, type Note } from "@/lib/workspace";
 export const Route = createFileRoute("/app/research")({
   head: () => ({
     meta: [
-      { title: "Research — Clause" },
+      { title: "Research — OpenMUN" },
       { name: "description", content: "Folders, notes and searchable research for your committee." },
-      { property: "og:title", content: "Research — Clause" },
+      { property: "og:title", content: "Research — OpenMUN" },
       { property: "og:description", content: "Folders, notes and searchable research for your committee." },
     ],
   }),
