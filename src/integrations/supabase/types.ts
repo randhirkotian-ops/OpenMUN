@@ -14,7 +14,397 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      countries: {
+        Row: {
+          capital: string
+          code: string
+          created_at: string
+          government_site: string
+          mfa_site: string
+          name: string
+          official_name: string
+          un_mission_site: string
+          updated_at: string
+        }
+        Insert: {
+          capital?: string
+          code: string
+          created_at?: string
+          government_site?: string
+          mfa_site?: string
+          name: string
+          official_name?: string
+          un_mission_site?: string
+          updated_at?: string
+        }
+        Update: {
+          capital?: string
+          code?: string
+          created_at?: string
+          government_site?: string
+          mfa_site?: string
+          name?: string
+          official_name?: string
+          un_mission_site?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      country_claims: {
+        Row: {
+          claim: string
+          country_code: string
+          created_at: string
+          id: string
+          published_on: string | null
+          publisher: string
+          retrieved_on: string | null
+          section: string
+          source_title: string
+          source_type: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          claim: string
+          country_code: string
+          created_at?: string
+          id?: string
+          published_on?: string | null
+          publisher?: string
+          retrieved_on?: string | null
+          section: string
+          source_title?: string
+          source_type?: string
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          claim?: string
+          country_code?: string
+          created_at?: string
+          id?: string
+          published_on?: string | null
+          publisher?: string
+          retrieved_on?: string | null
+          section?: string
+          source_title?: string
+          source_type?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "country_claims_country_code_fkey"
+            columns: ["country_code"]
+            isOneToOne: false
+            referencedRelation: "countries"
+            referencedColumns: ["code"]
+          },
+        ]
+      }
+      evidence: {
+        Row: {
+          claim: string
+          created_at: string
+          excerpt: string
+          id: string
+          page: string
+          source_id: string | null
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          claim?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          page?: string
+          source_id?: string | null
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          claim?: string
+          created_at?: string
+          excerpt?: string
+          id?: string
+          page?: string
+          source_id?: string | null
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "evidence_source_id_fkey"
+            columns: ["source_id"]
+            isOneToOne: false
+            referencedRelation: "sources"
+            referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "evidence_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      notes: {
+        Row: {
+          body: string
+          created_at: string
+          folder: string
+          id: string
+          tags: string[]
+          title: string
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          body?: string
+          created_at?: string
+          folder?: string
+          id?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          folder?: string
+          id?: string
+          tags?: string[]
+          title?: string
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "notes_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      pois: {
+        Row: {
+          answer: string
+          asked_by: string
+          created_at: string
+          id: string
+          response_seconds: number | null
+          text: string
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          answer?: string
+          asked_by?: string
+          created_at?: string
+          id?: string
+          response_seconds?: number | null
+          text?: string
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          answer?: string
+          asked_by?: string
+          created_at?: string
+          id?: string
+          response_seconds?: number | null
+          text?: string
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pois_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          display_name: string | null
+          id: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          display_name?: string | null
+          id: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          display_name?: string | null
+          id?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      sources: {
+        Row: {
+          created_at: string
+          id: string
+          note: string
+          published_on: string | null
+          publisher: string
+          source_type: string
+          title: string
+          updated_at: string
+          url: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          note?: string
+          published_on?: string | null
+          publisher?: string
+          source_type?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          note?: string
+          published_on?: string | null
+          publisher?: string
+          source_type?: string
+          title?: string
+          updated_at?: string
+          url?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "sources_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      tasks: {
+        Row: {
+          created_at: string
+          done: boolean
+          id: string
+          label: string
+          position: number
+          updated_at: string
+          user_id: string
+          workspace_id: string
+        }
+        Insert: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          label: string
+          position?: number
+          updated_at?: string
+          user_id: string
+          workspace_id: string
+        }
+        Update: {
+          created_at?: string
+          done?: boolean
+          id?: string
+          label?: string
+          position?: number
+          updated_at?: string
+          user_id?: string
+          workspace_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "tasks_workspace_id_fkey"
+            columns: ["workspace_id"]
+            isOneToOne: false
+            referencedRelation: "workspaces"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      workspaces: {
+        Row: {
+          agenda: string
+          committee: string
+          conference: string
+          country: string
+          created_at: string
+          delegate: string
+          id: string
+          position_paper: string
+          practice_seconds: number
+          resolution: string
+          speech_draft: string
+          start_date: string | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          agenda?: string
+          committee?: string
+          conference?: string
+          country?: string
+          created_at?: string
+          delegate?: string
+          id?: string
+          position_paper?: string
+          practice_seconds?: number
+          resolution?: string
+          speech_draft?: string
+          start_date?: string | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          agenda?: string
+          committee?: string
+          conference?: string
+          country?: string
+          created_at?: string
+          delegate?: string
+          id?: string
+          position_paper?: string
+          practice_seconds?: number
+          resolution?: string
+          speech_draft?: string
+          start_date?: string | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
