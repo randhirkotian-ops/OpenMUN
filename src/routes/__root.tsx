@@ -78,11 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "OpenMUN — The workspace for Model UN delegates" },
+      { title: "OpenMUN — Make MUN less annoying" },
       {
         name: "description",
         content:
-          "Research, position papers, resolutions and speeches for Model United Nations, in one calm workspace.",
+          "Open-source preparation software for Model UN delegates: country intelligence, sourced evidence, position papers, resolutions and speech feedback in one place.",
       },
       { name: "author", content: "Randhir Kotian" },
       { property: "og:type", content: "website" },
