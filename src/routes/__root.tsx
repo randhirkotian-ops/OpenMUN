@@ -78,11 +78,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Clause — The workspace for Model UN delegates" },
+      { title: "OpenMUN — Make MUN less annoying" },
       {
         name: "description",
         content:
-          "Research, position papers, resolutions and speeches for Model United Nations, in one calm workspace.",
+          "Open-source preparation software for Model UN delegates: country intelligence, sourced evidence, position papers, resolutions and speech feedback in one place.",
       },
       { name: "author", content: "Randhir Kotian" },
       { property: "og:type", content: "website" },
@@ -94,7 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=Geist:wght@300..700&family=Geist+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400..700;1,8..60,400&display=swap",
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
     ],

@@ -11,9 +11,9 @@ import { useWorkspace } from "@/lib/workspace";
 export const Route = createFileRoute("/app/speeches")({
   head: () => ({
     meta: [
-      { title: "Speech Coach — Clause" },
+      { title: "Speech Coach — OpenMUN" },
       { name: "description", content: "Structure, pacing, tone and policy alignment feedback on your speech." },
-      { property: "og:title", content: "Speech Coach — Clause" },
+      { property: "og:title", content: "Speech Coach — OpenMUN" },
       { property: "og:description", content: "Structure, pacing, tone and policy alignment feedback on your speech." },
     ],
   }),
@@ -34,7 +34,7 @@ function SpeechesPage() {
     <PageShell
       eyebrow="Speech coach"
       title="Say it like a diplomat."
-      description="Paste or draft your speech. Clause reads it for structure, pacing, hedging and policy alignment."
+      description="Paste or draft your speech. OpenMUN reads it for structure, pacing, hedging and policy alignment."
     >
       <div className="grid gap-5 lg:grid-cols-[1fr_340px]">
         <Panel>

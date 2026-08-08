@@ -9,9 +9,9 @@ import { SOURCE_LIBRARY } from "@/data/source-library";
 export const Route = createFileRoute("/app/sources")({
   head: () => ({
     meta: [
-      { title: "Source Library — Clause" },
+      { title: "Source Library — OpenMUN" },
       { name: "description", content: "Curated official UN and international organisation research sources." },
-      { property: "og:title", content: "Source Library — Clause" },
+      { property: "og:title", content: "Source Library — OpenMUN" },
       { property: "og:description", content: "Curated official UN and international organisation research sources." },
     ],
   }),

@@ -8,13 +8,13 @@ import { useWorkspace } from "@/lib/workspace";
 export const Route = createFileRoute("/app/country")({
   head: () => ({
     meta: [
-      { title: "Country Intelligence — Clause" },
+      { title: "Country Intelligence — OpenMUN" },
       {
         name: "description",
         content:
           "Leadership, political system, treaties and foreign policy priorities, every field cited to an official source.",
       },
-      { property: "og:title", content: "Country Intelligence — Clause" },
+      { property: "og:title", content: "Country Intelligence — OpenMUN" },
       {
         property: "og:description",
         content: "Cited country briefs for Model UN delegates, built from official sources.",
@@ -51,7 +51,7 @@ function CountryPage() {
       >
         <Panel>
           <p className="text-sm text-muted-foreground">
-            Clause only publishes facts transcribed from official sources, so we won't generate a
+            OpenMUN only publishes facts transcribed from official sources, so we won't generate a
             profile. Start from these primary sources instead:
           </p>
           <ul className="mt-4 space-y-2 text-sm">

@@ -11,9 +11,9 @@ import { exportDocx, exportMarkdown, exportPdf } from "@/lib/export";
 export const Route = createFileRoute("/app/resolution")({
   head: () => ({
     meta: [
-      { title: "Resolution Editor — Clause" },
+      { title: "Resolution Editor — OpenMUN" },
       { name: "description", content: "Draft resolutions with automatic formatting and a clause checker." },
-      { property: "og:title", content: "Resolution Editor — Clause" },
+      { property: "og:title", content: "Resolution Editor — OpenMUN" },
       { property: "og:description", content: "Automatic clause formatting plus a checker that suggests, never rewrites." },
     ],
   }),

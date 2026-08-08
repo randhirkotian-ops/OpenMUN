@@ -6,9 +6,9 @@ import { countWords, useReadiness, useWorkspace } from "@/lib/workspace";
 export const Route = createFileRoute("/app/analytics")({
   head: () => ({
     meta: [
-      { title: "Analytics — Clause" },
+      { title: "Analytics — OpenMUN" },
       { name: "description", content: "Preparation score, document progress and practice time." },
-      { property: "og:title", content: "Analytics — Clause" },
+      { property: "og:title", content: "Analytics — OpenMUN" },
       { property: "og:description", content: "Preparation score, document progress and practice time." },
     ],
   }),

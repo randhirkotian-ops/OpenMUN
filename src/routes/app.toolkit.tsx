@@ -8,9 +8,9 @@ import { useWorkspace } from "@/lib/workspace";
 export const Route = createFileRoute("/app/toolkit")({
   head: () => ({
     meta: [
-      { title: "Debate Toolkit — Clause" },
+      { title: "Debate Toolkit — OpenMUN" },
       { name: "description", content: "Speech timer, motion templates and points of order reference." },
-      { property: "og:title", content: "Debate Toolkit — Clause" },
+      { property: "og:title", content: "Debate Toolkit — OpenMUN" },
       { property: "og:description", content: "Speech timer, motion templates and points of order reference." },
     ],
   }),
