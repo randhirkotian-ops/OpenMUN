@@ -309,7 +309,10 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
         }
       }
       if (Object.keys(rowPatch).length) {
-        const { error: e } = await supabase.from("workspaces").update(rowPatch).eq("id", w.id);
+        const { error: e } = await supabase
+          .from("workspaces")
+          .update(rowPatch as never)
+          .eq("id", w.id);
         if (e) throw e;
       }
 
@@ -399,7 +402,9 @@ async function syncList<T extends { id: string }>(
   if (items.length) {
     const { error } = await supabase
       .from(table)
-      .upsert(items.map((item, i) => ({ ...toRow(item, i), workspace_id: workspaceId, user_id: userId })));
+      .upsert(
+        items.map((item, i) => ({ ...toRow(item, i), workspace_id: workspaceId, user_id: userId })) as never,
+      );
     if (error) throw error;
   }
   let del = supabase.from(table).delete().eq("workspace_id", workspaceId);
