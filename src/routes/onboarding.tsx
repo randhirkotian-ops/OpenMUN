@@ -1,39 +1,38 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
-import { ArrowRight, Check } from "lucide-react";
+import { useEffect, useState } from "react";
+import { ArrowRight, Check, Loader2 } from "lucide-react";
+import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import { Wordmark } from "@/components/brand";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { COUNTRIES } from "@/data/countries";
-import { createWorkspace, WorkspaceProvider, useWorkspace } from "@/lib/workspace";
+import { createWorkspaceRecord } from "@/lib/workspace";
 
 export const Route = createFileRoute("/onboarding")({
   head: () => ({
     meta: [
-      { title: "Create your workspace — Clause" },
+      { title: "Create your workspace — OpenMUN" },
       {
         name: "description",
         content: "Four questions and your Model UN conference workspace is ready.",
       },
-      { property: "og:title", content: "Create your workspace — Clause" },
+      { property: "og:title", content: "Create your workspace — OpenMUN" },
       {
         property: "og:description",
         content: "Four questions and your Model UN conference workspace is ready.",
       },
     ],
   }),
-  component: () => (
-    <WorkspaceProvider>
-      <Onboarding />
-    </WorkspaceProvider>
-  ),
+  component: Onboarding,
 });
 
 function Onboarding() {
   const navigate = useNavigate();
-  const { setWorkspace } = useWorkspace();
+  const [userId, setUserId] = useState<string | null>(null);
+  const [busy, setBusy] = useState(false);
   const [form, setForm] = useState({
     conference: "",
     committee: "",
@@ -42,6 +41,13 @@ function Onboarding() {
     startDate: "",
     delegate: "",
   });
+
+  useEffect(() => {
+    void supabase.auth.getSession().then(({ data }) => {
+      if (!data.session) void navigate({ to: "/auth" });
+      else setUserId(data.session.user.id);
+    });
+  }, [navigate]);
 
   const set = (k: keyof typeof form) => (v: string) => setForm((f) => ({ ...f, [k]: v }));
   const valid = form.conference && form.committee && form.country && form.agenda;
@@ -59,9 +65,16 @@ function Onboarding() {
           className="surface-panel mt-9 space-y-6 p-7"
           onSubmit={(e) => {
             e.preventDefault();
-            if (!valid) return;
-            setWorkspace(createWorkspace(form));
-            navigate({ to: "/app" });
+            if (!valid || !userId || busy) return;
+            setBusy(true);
+            void createWorkspaceRecord(userId, form)
+              .then(() => navigate({ to: "/app" }))
+              .catch((err: unknown) => {
+                setBusy(false);
+                toast.error("Could not create your workspace", {
+                  description: err instanceof Error ? err.message : "Please try again.",
+                });
+              });
           }}
         >
           <Field label="Conference name" hint="e.g. Harvard MUN India 2026">
@@ -85,12 +98,12 @@ function Onboarding() {
           <Field label="Country" hint="Countries with a full intelligence brief are marked">
             <Input
               required
-              list="clause-countries"
+              list="openmun-countries"
               value={form.country}
               onChange={(e) => set("country")(e.target.value)}
               placeholder="Country you represent"
             />
-            <datalist id="clause-countries">
+            <datalist id="openmun-countries">
               {COUNTRIES.map((c) => (
                 <option key={c.name} value={c.name} />
               ))}
@@ -136,7 +149,10 @@ function Onboarding() {
             </Field>
           </div>
 
-          <Button type="submit" size="lg" className="w-full rounded-full" disabled={!valid}>
+          <Button type="submit" size="lg" className="w-full rounded-full" disabled={!valid || busy}>
+            {busy ? (
+              <Loader2 className="mr-1 h-4 w-4 animate-spin" />
+            ) : null}
             Create workspace <ArrowRight className="ml-1 h-4 w-4" />
           </Button>
           <ul className="grid gap-2 pt-1 text-xs text-muted-foreground sm:grid-cols-2">
